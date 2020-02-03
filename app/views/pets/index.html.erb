@@ -1,0 +1,24 @@
+
+
+<h1 class=petindex>All Pets</h1>
+
+<% @pets.each do |pet| %>
+  <div class = polaroid>
+  <div class = container><img src="<%= pet.image_src%>" alt="dog pic" %></div>
+  <div class = dogname><h2><a href="/pets/<%=pet.id%>"><%= pet.name %></a></h2></div>
+  <div class = petinfo>
+  <p>Shelter: <a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name%></a></p>
+  <p>Age: <%=pet.approximate_age%></p>
+  <p>Sex: <%=pet.sex%></p>
+  <p>Status: <%=pet.status%></p>
+  <p>Description: <%=pet.description%></p>
+  </div>
+  <%=link_to '<button type="button">Edit</button>'.html_safe, "/pets/#{pet.id}/edit", method: :get %>
+
+  <form action="/pets/<%=pet.id%>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
+  </div>
+  <% end %>

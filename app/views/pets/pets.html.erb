@@ -1,0 +1,19 @@
+<h1> Pets for Adoption at <%= @shelter.name %></h1>
+
+<center>
+<%@shelter.pets.each do |pet| %>
+  <center><div class = polaroid_small>
+  <div class = container_small><img class = small src="<%= pet.image_src%>" alt="dog pic" %></div>
+  <div class = dogname_small><h4><a href="/pets/<%=pet.id%>"><%= pet.name %></a></h4></div>
+  <div class = petinfo_small>
+  <p>Age: <%=pet.approximate_age%></p>
+  <p>Sex: <%=pet.sex%></p>
+  <p>Description: <%=pet.description%></p>
+  <p>Adoption Status: <%=pet.status%></p>
+  <p>Shelter: <a href="/shelters/<%=pet.shelter.id%>"><%=pet.shelter.name%></a></p>
+  </div>
+  </div></center>
+<% end %></center>
+
+<%=
+link_to "Create New Pet", "/shelters/#{@shelter.id}/pets/new", method: :get %>
