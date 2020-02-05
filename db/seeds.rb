@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Pet.destroy_all
 Shelter.destroy_all
+Review.destroy_all
 
 
 shelter1 = Shelter.create(name: "Pups 4 U",
@@ -44,3 +45,13 @@ pet3 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/s
                       status: "adopted",
                       description: "",
                       shelter_id: shelter1.id)
+
+review1 = Review.create(title: "Awesome",
+                        rating: "5",
+                        content: "This place smells SO nice",
+                        shelter: shelter1)
+review2 = Review.create(title: "Meh",
+                        rating: "3",
+                        content: "I think my mom's basement is better",
+                        image_src: "https://media.npr.org/assets/img/2014/12/31/allen-dogs2_slide-8899d50d4e46c5ad322c5a3a364310f15f555d6f-s800-c85.jpg",
+                        shelter: shelter1)
