@@ -14,3 +14,8 @@
 
 <h2>Dogs Available for Adoption</h2>
 <%=link_to '<button type="button">Pets Available</button>'.html_safe, "/shelters/#{@shelter.id}/pets", method: :get %>
+
+<h2>Reviews</h2>
+<% @shelter.reviews.each do |review| %>
+<p>title: <%= review.title %></p>
+<% end %>
