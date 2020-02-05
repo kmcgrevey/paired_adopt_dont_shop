@@ -21,7 +21,15 @@ RSpec.describe "When I visit a shelter show page", type: :feature do
 
 
     visit "/shelters/#{shelter1.id}"
+
     expect(page).to have_content(review1.title)
-    expect(page).to have_content(review2.title)
+    expect(page).to have_content(review1.rating)
+    expect(page).to have_content(review1.content)
+    #NEED METHOD TO TEST FOR NO IMAGE 
+
+    expect(page).to have_content('Meh')
+    expect(page).to have_content('3')
+    expect(page).to have_content("I think my mom's basement is better")
+    expect(page).to have_css("img[src*='#{review2.image_src}']")
   end
 end

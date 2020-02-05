@@ -17,5 +17,9 @@
 
 <h2>Reviews</h2>
 <% @shelter.reviews.each do |review| %>
-<p>title: <%= review.title %></p>
+  <h3><%= review.title %></h3>
+  <p>rating: <%= review.rating %></p>
+  <p><%= review.content %></p>
+  <div><img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %></div>
+  <!-- NEED CLEAN DEFAULT IF NO IMAGE IS PRESENT -->
 <% end %>
