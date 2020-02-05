@@ -1,10 +1,12 @@
 class PetsController < ApplicationController
   def index
     @pets = Pet.all
+    # @favorites
   end
 
   def pets
     @shelter = Shelter.find(params[:shelter_id])
+    # @favorites
   end
 
   def new
@@ -13,6 +15,10 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    # pet = Pet.find(params[:id])
+    # @favorites ||= Array.new
+    # @favorites << @pet
+    # render 'show'
   end
 
   def create
@@ -45,6 +51,17 @@ class PetsController < ApplicationController
   def destroy
     Pet.destroy(params[:id])
     redirect_to '/pets'
+  end
+
+  def favorite
+    @pet = Pet.find(params[:id])
+    # session[:favorites] = @favorites
+    # @favorites ||= Favorite.new
+    session[:favorites] ||= Favorite.new.pets
+    # @favorites.pets << @pet
+    session[:favorites] << @pet
+    flash[:notice] = "#{@pet.name} was added to your favorites!"
+    render :show
   end
 
   private

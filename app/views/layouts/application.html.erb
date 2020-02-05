@@ -14,10 +14,22 @@
     <!-- <a class="active" href="/">Home</a> -->
     <a href="/shelters">Shelters</a>
     <a href="/pets">Pets</a>
+    <p> &star;
+      <% if session[:favorites] == nil %>
+      <%= "0" %>
+      <% else %>
+      <%= session[:favorites].length %>
+      <%end%>
+      Favorites</p>
   </div>
 </div>
 
   <body>
+
+    <% flash.each do |type, message| %>
+      <p><%= message %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>

@@ -25,4 +25,7 @@
 
 
 <a href="/shelters/<%= @pet.shelter.id %>">Shelter Information</a>
+
+<%= button_to 'Add Pet to Favorites', @favorite_pets_path, method: :post %>
+
 </center>
