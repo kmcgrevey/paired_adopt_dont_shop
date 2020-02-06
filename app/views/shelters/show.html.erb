@@ -1,4 +1,6 @@
-<a href="/shelters">All Shelters</a>
+<a href="/shelters">All Shelters</a><br>
+
+<%=link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 
 <h1><%= @shelter.name %></h1>
 
@@ -20,6 +22,7 @@
   <h3><%= review.title %></h3>
   <p>rating: <%= review.rating %></p>
   <p><%= review.content %></p>
-  <div><img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %></div>
+  <img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %>
   <!-- NEED CLEAN DEFAULT IF NO IMAGE IS PRESENT -->
+  <!-- REMOVE INLINE CSS STYLING FOR IMAGE SIZE -->
 <% end %>
