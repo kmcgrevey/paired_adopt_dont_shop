@@ -1,0 +1,6 @@
+<h1>Favorites</h1>
+
+<% @favorite_pets.each do |pet| %>
+<%= link_to "#{pet["name"]}", "/pets/#{pet["id"]}"%>
+<%= image_tag(pet["image_src"]) %>
+<% end %>

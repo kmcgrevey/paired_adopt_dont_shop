@@ -18,7 +18,7 @@ post '/shelters/:id/pets', to: 'pets#create'
 get '/pets/:id/edit', to: 'pets#edit'
 patch '/pets/:id', to: 'pets#update'
 delete '/pets/:id', to: 'pets#destroy'
-post '/pets/:id', to: 'pets#favorite'
 
-# get '/favorites', to: 'favorites#index'
+post '/pets/:id', to: 'pets#favorite'
+get '/favorites', to: 'favorites#index'
 end
