@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:id])
-    # shelter.reviews.create(review_params)
     review = shelter.reviews.new(review_params)
     if review.save
       redirect_to "/shelters/#{shelter.id}"
@@ -15,6 +14,25 @@ class ReviewsController < ApplicationController
       # render :new
       redirect_to "/shelters/#{shelter.id}/reviews/new"
     end
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+      # {
+      # title: params[:review][:title],
+      # rating: params[:review][:rating],
+      # content: params[:review][:content],
+      # image_src: params[:review][:image_src],
+      # }
+
+
+    review.save
+    redirect_to "/shelters/#{review.shelter_id}"
   end
 
   private
