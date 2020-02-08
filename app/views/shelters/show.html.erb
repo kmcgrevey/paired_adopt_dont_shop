@@ -19,10 +19,13 @@
 
 <h2>Reviews</h2>
 <% @shelter.reviews.each do |review| %>
-  <h3><%= review.title %></h3>
-  <p>rating: <%= review.rating %></p>
-  <p><%= review.content %></p>
-  <img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %>
+  <section id="review-<%= review.id %>">
+    <h3><%= review.title %></h3>
+    <p>rating: <%= review.rating %></p>
+    <p><%= review.content %></p>
+    <img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %>
+    <%=link_to 'Edit Review', "/reviews/#{review.id}/edit", method: :get %>
+  </section>
   <!-- NEED CLEAN DEFAULT IF NO IMAGE IS PRESENT -->
   <!-- REMOVE INLINE CSS STYLING FOR IMAGE SIZE -->
 <% end %>
