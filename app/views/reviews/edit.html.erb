@@ -1,5 +1,5 @@
 <%= form_tag("/reviews/#{@review.id}", method: :patch) do %>
-  <p>Edit Review</p>
+  <h2>Edit Review</h2>
   <p><%= label_tag :title %>
     <%= text_field_tag :title, @review.title %></p>
   <p><%= label_tag :rating %>
