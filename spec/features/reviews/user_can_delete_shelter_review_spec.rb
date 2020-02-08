@@ -21,6 +21,7 @@ RSpec.describe "When a user sees shelter reviews", type: :feature do
 
     expect(page).to have_content('Awesome')
     expect(page).to have_content('Meh')
+    expect(page).to have_css("img[src*='#{review2.image_src}']")
 
     within("#review-#{review2.id}") do
       click_on 'Delete Review'
@@ -30,6 +31,6 @@ RSpec.describe "When a user sees shelter reviews", type: :feature do
     expect(page).to_not have_content('Meh')
     expect(page).to_not have_content('3')
     expect(page).to_not have_content("I think my mom's basement is better")
-    expect(page).to_not have_content("https://media.npr.org/assets/img/2014/12/31/allen-dogs2_slide-8899d50d4e46c5ad322c5a3a364310f15f555d6f-s800-c85.jpg")
+    expect(page).to_not have_css("img[src*='#{review2.image_src}']")
   end
 end

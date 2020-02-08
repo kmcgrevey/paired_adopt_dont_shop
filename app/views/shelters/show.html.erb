@@ -25,6 +25,7 @@
     <p><%= review.content %></p>
     <img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %>
     <%=link_to 'Edit Review', "/reviews/#{review.id}/edit", method: :get %>
+    <%=link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
   </section>
   <!-- NEED CLEAN DEFAULT IF NO IMAGE IS PRESENT -->
   <!-- REMOVE INLINE CSS STYLING FOR IMAGE SIZE -->
