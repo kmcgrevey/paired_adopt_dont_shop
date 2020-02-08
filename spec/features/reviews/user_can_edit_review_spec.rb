@@ -38,4 +38,26 @@ RSpec.describe "When a user sees shelter reviews", type: :feature do
 
     expect(page).to have_content("This place smells SO nice -- and so does the staff!")
   end
+
+  it "they see a flash message for incomplete field inputs" do
+    shelter1 = Shelter.create(name: "Pups 4 U",
+                           address: "208 Puppy Place",
+                           city: "Denver",
+                           state: "CO",
+                           zip: 80211)
+    review2 = Review.create(title: "Meh",
+                            rating: "3",
+                            content: "I think my mom's basement is better",
+                            image_src: "https://media.npr.org/assets/img/2014/12/31/allen-dogs2_slide-8899d50d4e46c5ad322c5a3a364310f15f555d6f-s800-c85.jpg",
+                            shelter: shelter1)
+
+    visit "/reviews/#{review2.id}/edit"
+
+    expect(page).to have_field(:rating, with: '3')
+    fill_in :rating, with: ""
+
+    click_on 'Submit'
+
+    expect(page).to have_content("Review not updated: Required information missing.")
+  end
 end

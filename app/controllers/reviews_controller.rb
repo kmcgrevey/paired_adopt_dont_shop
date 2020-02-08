@@ -23,16 +23,12 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     review.update(review_params)
-      # {
-      # title: params[:review][:title],
-      # rating: params[:review][:rating],
-      # content: params[:review][:content],
-      # image_src: params[:review][:image_src],
-      # }
-
-
-    review.save
-    redirect_to "/shelters/#{review.shelter_id}"
+    if review.save
+      redirect_to "/shelters/#{review.shelter_id}"
+    else
+      flash[:alert] = "Review not updated: Required information missing."
+      redirect_to "/reviews/#{review.id}/edit"
+    end
   end
 
   private
