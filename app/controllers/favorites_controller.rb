@@ -34,4 +34,14 @@ class FavoritesController < ApplicationController
     # render "pets/show"
     redirect_to "/pets/#{@pet.id}"
   end
+
+  def remove_index
+    @pet = Pet.find(params[:pet_id])
+    @favorite_pets = session[:favorites]
+    @favorite_pets.delete(@pet.id.to_s)
+    session[:favorites] = @favorite_pets
+    # flash[:notice] = "#{@pet.name} was removed from your favorites."
+    # render "pets/show"
+    redirect_to "/favorites"
+  end
 end

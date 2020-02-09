@@ -8,6 +8,9 @@
   <div class = container_small>
     <% pet = Pet.find(fav_pet.to_i) %>
     <div class = dogname_small><h2><%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2></div>
-    <%= image_tag(pet.image_src) %></div></div>
+    <%= image_tag(pet.image_src) %>
+  <%= button_to 'Remove from Favorites', "/favorites/#{pet.id}" , method: :delete %>
+  </div>
+  </div>
   <% end %>
 <% end %>
