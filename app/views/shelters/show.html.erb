@@ -1,4 +1,6 @@
-<a href="/shelters">All Shelters</a>
+<a href="/shelters">All Shelters</a><br>
+
+<%=link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 
 <h1><%= @shelter.name %></h1>
 
@@ -14,3 +16,17 @@
 
 <h2>Dogs Available for Adoption</h2>
 <%=link_to '<button type="button">Pets Available</button>'.html_safe, "/shelters/#{@shelter.id}/pets", method: :get %>
+
+<h2>Reviews</h2>
+<% @shelter.reviews.each do |review| %>
+  <section id="review-<%= review.id %>">
+    <h3><%= review.title %></h3>
+    <p>rating: <%= review.rating %></p>
+    <p><%= review.content %></p>
+    <img style= "width: 30%" src="<%= review.image_src%>" alt="review pic" %>
+    <%=link_to 'Edit Review', "/reviews/#{review.id}/edit", method: :get %>
+    <%=link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
+  </section>
+  <!-- NEED CLEAN DEFAULT IF NO IMAGE IS PRESENT -->
+  <!-- REMOVE INLINE CSS STYLING FOR IMAGE SIZE -->
+<% end %>
