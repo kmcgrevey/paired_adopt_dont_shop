@@ -3,6 +3,8 @@
 <% if @favorite_pets == [] %>
   <h3>No favorited pets</h3>
 <% else %>
+  <%= button_to 'Remove All Favorites', "/favorites", method: :delete %>
+  
   <% @favorite_pets.each do |fav_pet| %>
   <div class = polaroid_small>
   <div class = container_small>

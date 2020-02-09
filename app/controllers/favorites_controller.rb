@@ -44,4 +44,10 @@ class FavoritesController < ApplicationController
     # render "pets/show"
     redirect_to "/favorites"
   end
+
+  def remove_all
+    session[:favorites] = []
+    @favorite_pets = session[:favorites]
+    redirect_to "/favorites"
+  end
 end
