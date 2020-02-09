@@ -1,7 +1,13 @@
 <h1>Favorites</h1>
 
-<% @favorite_pets.each do |fav_pet| %>
-  <% pet = Pet.find(fav_pet.to_i) %>
-  <%= link_to "#{pet.name}", "/pets/#{pet.id}"%>
-  <%= image_tag(pet.image_src) %>
+<% if @favorite_pets == [] %>
+  <h3>No favorited pets</h3>
+<% else %>
+  <% @favorite_pets.each do |fav_pet| %>
+  <div class = polaroid_small>
+  <div class = container_small>
+    <% pet = Pet.find(fav_pet.to_i) %>
+    <div class = dogname_small><h2><%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2></div>
+    <%= image_tag(pet.image_src) %></div></div>
+  <% end %>
 <% end %>
