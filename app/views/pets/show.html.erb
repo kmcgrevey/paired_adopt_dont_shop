@@ -25,4 +25,17 @@
 
 
 <a href="/shelters/<%= @pet.shelter.id %>">Shelter Information</a>
+
+
+
+<% if session[:favorites] == nil %>
+<%= button_to 'Add Pet to Favorites', @favorite_favorites_path, method: :post %>
+<% elsif session[:favorites].include?(@pet.id.to_s)  %>
+<%=  button_to 'Remove from Favorites', "/favorites/#{@pet.id}" , method: :patch %>
+<% else %>
+<%= button_to 'Add Pet to Favorites', @favorite_favorites_path, method: :post %>
+<% end %>
+<!--  @favorite_pets_path @favorite_favorites_path  @destroy_favorites_path-->
+
+
 </center>
