@@ -19,6 +19,9 @@ get '/pets/:id/edit', to: 'pets#edit'
 patch '/pets/:id', to: 'pets#update'
 delete '/pets/:id', to: 'pets#destroy'
 
-post '/pets/:id', to: 'pets#favorite'
+# post '/pets/:id', to: 'pets#favorite'
+post '/pets/:id', to: 'favorites#favorite'
 get '/favorites', to: 'favorites#index'
+# delete '/pets/:id', to: 'favorites#destroy'
+patch '/favorites/:pet_id', to: 'favorites#remove'
 end

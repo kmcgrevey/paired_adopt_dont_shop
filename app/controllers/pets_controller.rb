@@ -53,16 +53,16 @@ class PetsController < ApplicationController
     redirect_to '/pets'
   end
 
-  def favorite
-    @pet = Pet.find(params[:id])
-    # session[:favorites] = @favorites
-    # @favorites ||= Favorite.new
-    session[:favorites] ||= Favorite.new.pets
-    # @favorites.pets << @pet
-    session[:favorites] << @pet
-    flash[:notice] = "#{@pet.name} was added to your favorites!"
-    render :show
-  end
+  # def favorite
+  #   @pet = Pet.find(params[:id])
+  #   # session[:favorites] = @favorites
+  #   # @favorites ||= Favorite.new
+  #   session[:favorites] ||= Favorite.new.pets
+  #   # @favorites.pets << @pet
+  #   session[:favorites] << @pet
+  #   flash[:notice] = "#{@pet.name} was added to your favorites!"
+  #   render :show
+  # end
 
   private
 
