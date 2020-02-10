@@ -40,15 +40,16 @@ class SheltersController < ApplicationController
     redirect_to "/shelters/#{shelter.id}"
   end
 
-  def destroy #REFACTOR TO MODEL IF TIME
+  def destroy #REFACTOR TO MODEL and PORO
     pet_list = Shelter.find(params[:id]).pets # LIST OF PETS
-    if (pet_list.any? { |pet| pet.status == "pending" }) == false
-      # pet_list.each do |pet|
-      #   #WRITE pet[:shelter_id] => ""
-      # end
+    if (pet_list.any? { |pet| (pet.status == "pending") || (pet.status == "approved") }) == false
+      # NEED TO DELETE EACH PET FROM db BEFORE SHELTER
+      pet_list.each do |pet|
+        Pet.destroy(pet.id.to_s)
+      end
       Shelter.destroy(params[:id])
     else
-      flash[:alert] = "Meowch! Couldn't delete shelter because of pending adoption status."
+      flash[:alert] = "Meowch! Couldn't delete shelter because of active adoption status."
     end
     redirect_to '/shelters'
   end

@@ -77,7 +77,7 @@ RSpec.describe "Delete Shelter with Pets", type: :feature do
       visit "/shelters/#{@shelter1.id}"
       click_on 'delete'
 
-      expect(page).to have_content("Meowch! Couldn't delete shelter because of pending adoption status.")
+      expect(page).to have_content("Meowch! Couldn't delete shelter because of active adoption status.")
 
       visit '/shelters'
       expect(page).to have_content(@shelter2.name)
