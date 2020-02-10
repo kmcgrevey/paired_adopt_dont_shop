@@ -26,15 +26,20 @@ class SheltersController < ApplicationController
 
   def update
     shelter = Shelter.find(params[:id])
-    shelter.update({
-      name: params[:shelter][:name],
-      address: params[:shelter][:address],
-      city: params[:shelter][:city],
-      state: params[:shelter][:state],
-      zip: params[:shelter][:zip]
-      })
-    shelter.save
-    redirect_to "/shelters/#{shelter.id}"
+    # shelter.update({
+    #   name: params[:shelter][:name],
+    #   address: params[:shelter][:address],
+    #   city: params[:shelter][:city],
+    #   state: params[:shelter][:state],
+    #   zip: params[:shelter][:zip]
+    #   })
+    shelter.update(shelter_params)
+    if shelter.save
+      redirect_to "/shelters/#{shelter.id}"
+    else
+      flash[:alert] = "Shelter not updated: SHELTER NAME required."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    end
   end
 
   def destroy #REFACTOR TO MODEL and PORO
