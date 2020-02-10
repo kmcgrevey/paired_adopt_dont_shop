@@ -15,6 +15,11 @@ RSpec.describe "Delete Shelter", type: :feature do
         city: "New Orleans",
         state: "LA",
         zip: 70118)
+
+      review1 = Review.create(title: "Awesome",
+                              rating: "5",
+                              content: "This place smells SO nice",
+                              shelter: @shelter1)
     end
 
     it "I can delete the shelter" do
