@@ -1,15 +1,17 @@
 <h1>Favorites</h1>
 
+<section id=pets> 
 <% if @favorite_pets == [] %>
   <h3>No favorited pets</h3>
 <% else %>
   <%= button_to 'Remove All Favorites', "/favorites", method: :delete %>
-  
+  <%= button_to 'Adopt Pets', '/applications/new', method: :get %>
   <% @favorite_pets.each do |fav_pet| %>
   <div class = polaroid_small>
   <div class = container_small>
     <% pet = Pet.find(fav_pet.to_i) %>
     <div class = dogname_small><h2><%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2></div>
+    </section>
     <%= image_tag(pet.image_src) %>
   <%= button_to 'Remove from Favorites', "/favorites/#{pet.id}" , method: :delete %>
   </div>
