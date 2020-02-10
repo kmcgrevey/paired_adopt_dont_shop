@@ -40,7 +40,7 @@ RSpec.describe "index to new shelter form page", type: :feature do
   it "can go to new shelter form and submit" do
     visit '/shelters/new'
 
-    fill_in :shelter_name, with: "Pups 4 U"
+    fill_in :name, with: "Pups 4 U"
 
     click_on 'Submit'
     visit '/shelters'

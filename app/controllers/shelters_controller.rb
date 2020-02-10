@@ -15,12 +15,13 @@ class SheltersController < ApplicationController
   end
 
   def create
-    shelter = Shelter.new({
-      name: params[:shelter][:name],
-      address: params[:shelter][:address],
-      state: params[:shelter][:state],
-      zip: params[:shelter][:zip]
-      })
+    # shelter = Shelter.new({
+    #   name: params[:shelter][:name],
+    #   address: params[:shelter][:address],
+    #   state: params[:shelter][:state],
+    #   zip: params[:shelter][:zip]
+    #   })
+    shelter = Shelter.new(shelter_params)
 
     shelter.save
 
@@ -52,5 +53,11 @@ class SheltersController < ApplicationController
       flash[:alert] = "Meowch! Couldn't delete shelter because of active adoption status."
     end
     redirect_to '/shelters'
+  end
+
+  private
+
+  def shelter_params
+    params.permit(:name, :address, :city, :state, :zip)
   end
 end
