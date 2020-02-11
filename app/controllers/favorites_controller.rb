@@ -1,6 +1,8 @@
 class FavoritesController < ApplicationController
   def index
     @favorite_pets = session[:favorites] ||= []
+    # require "pry"; binding.pry
+    @pets = Pet.all
   end
 
   def show

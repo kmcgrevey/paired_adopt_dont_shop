@@ -1,10 +1,14 @@
 <%= form_tag("/favorites", method: :post) do %>
 <h4>Select pets to adopt:</h4>
+<% pet_array ||= [] %>
   <section>
     <% session[:favorites].each do |favorite| %>
       <% @pet = Pet.find(favorite.to_i) %>
-      <p><%= check_box_tag :pet, @pet.id %>
-      <%= label_tag @pet.name %></p>
+      <% pet_array << @pet.id %>
+      <section id=check>
+      <p><%= check_box_tag "pet_ids[]", @pet.id %> <! check_box_tag :pets, pet_array, @pet.name-->
+        <%= label_tag @pet.name %></p>
+      </section>
     <% end %>
   </section>
   <p><%= label_tag :name %>
