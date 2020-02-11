@@ -1,11 +1,14 @@
-<form action= "/shelters/<%= @shelter.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <p>Edit</p>
-  <textarea name='shelter[name]'><%= @shelter.name %></textarea><br/>
-  <textarea name='shelter[address]'><%= @shelter.address %></textarea><br/>
-  <textarea name='shelter[city]'><%= @shelter.city %></textarea><br/>
-  <textarea name='shelter[state]'><%= @shelter.state %></textarea><br/>
-  <textarea name='shelter[zip]'><%= @shelter.zip %></textarea><br/>
-  <input type='submit'/>
-</form>
+<%= form_tag("/shelters/#{@shelter.id}", method: :patch) do %>
+  <h3>Update Shelter Information</h3>
+  <p><%= label_tag :name %>
+     <%= text_field_tag :name, @shelter.name %>(required)</p>
+  <p><%= label_tag :address %>
+     <%= text_field_tag :address, @shelter.address %></p>
+  <p><%= label_tag :city %>
+     <%= text_field_tag :city, @shelter.city %></p>
+  <p><%= label_tag :state %>
+    <%= text_field_tag :state, @shelter.state %></p>
+    <p><%= label_tag :zip %>
+      <%= text_field_tag :zip, @shelter.zip %></p>
+<%= submit_tag "Submit"%>
+<% end %>
