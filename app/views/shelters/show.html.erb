@@ -1,10 +1,16 @@
 <a href="/shelters">All Shelters</a><br>
 
-<%=link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 
 <h1><%= @shelter.name %></h1>
 
 <p><%= "#{@shelter.address} #{@shelter.city}, #{@shelter.state} #{@shelter.zip}" %></p>
+
+<section style="color:green" id="stats-<%= @shelter.id %>" >
+ <p>Pet Count: <%= @shelter.pets.count %>
+ Average Rating: <%= @shelter.average_rating.round(1) %>
+ Apps on File:</p>
+</section>
+
 
 <%=link_to '<button type="button">Update Shelter</button>'.html_safe, "/shelters/#{@shelter.id}/edit", method: :get %>
 
@@ -18,6 +24,7 @@
 <%=link_to '<button type="button">Pets Available</button>'.html_safe, "/shelters/#{@shelter.id}/pets", method: :get %>
 
 <h2>Reviews</h2>
+<%=link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 <% @shelter.reviews.each do |review| %>
   <section id="review-<%= review.id %>">
     <h3><%= review.title %></h3>
