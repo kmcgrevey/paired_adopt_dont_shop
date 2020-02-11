@@ -6,9 +6,7 @@ class Shelter < ApplicationRecord
 
 
     def average_rating
-      # require "pry"; binding.pry
       if reviews != []
-          # reviews.average(:rating)
           reviews.average("rating::int")
       else
         0
