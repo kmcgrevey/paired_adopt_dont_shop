@@ -4,13 +4,11 @@ class Shelter < ApplicationRecord
 
   validates_presence_of :name
 
-
-    def average_rating
-      if reviews != []
-          reviews.average("rating::int")
-      else
-        0
-      end
+  def average_rating
+    if reviews != []
+      reviews.average("rating::int")
+    else
+      0
     end
-
+  end
 end
