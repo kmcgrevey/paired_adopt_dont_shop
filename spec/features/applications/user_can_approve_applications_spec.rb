@@ -12,12 +12,16 @@ RSpec.describe "From a pets show page" do
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "Biscuit is so cute is hurts.  Friendly, lovable, and fun.",
                           shelter_id: shelter1.id)
 
     pet2 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "Frank loves to run",
                           shelter_id: shelter1.id)
 
     application = Application.create(name: "Kathleen",
@@ -33,6 +37,8 @@ RSpec.describe "From a pets show page" do
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "Frank loves to run",
                           shelter_id: shelter1.id)
 
     application2 = Application.create(name: "Bob",
@@ -44,20 +50,16 @@ RSpec.describe "From a pets show page" do
                                     description: "I will be a great owner",
                                     pets: [pet3, pet1])
 
-    visit "/pets/#{pet1.id}"
-    click_on "View All Applications"
-    expect(page).to have_content("#{application.name}")
-    expect(page).to have_content("#{application2.name}")
+    visit "/applications/#{application2.id}"
 
-    click_on "#{application2.name}"
-    expect(current_path).to eq("/applications/#{application2.id}")
+    within("#pet-#{pet1.id}") do
+      expect(page).to have_button("Approve Pet")
+      click_on "Approve Pet"
+      expect(current_path).to eq("/pets/#{pet1.id}")
+    end
 
-    visit "/pets/#{pet3.id}"
-    click_on "View All Applications"
-    expect(page).to have_content("#{application2.name}")
-
-    visit "/pets/#{pet2.id}"
-    click_on "View All Applications"
-    expect(page).to have_content("No Applications for this pet")
+    expect(page).to have_content("Adoption Status: Pending.")
+    expect(page).to have_content("On hold for #{application2.name}")
+    # expect(page).to have_content("Approve Pet")
   end
 end

@@ -29,11 +29,28 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @applications = Application.all
+    pet = Pet.find(params[:id])
+    @applications = pet.applications
+    # @applications = Application.all
+
+    # @application_pets = []
+    # @applications.each do |application|
+    #   @application_pets << application.pets
+    # end
+    # require "pry"; binding.pry
   end
 
   def show
     @application = Application.find(params[:id])
+  end
+
+  def approve
+    application = Application.find(params[:id])
+    pet = Pet.find(params[:pet_id])
+    pet.status = "Pending. On hold for #{application.name}"
+    pet.save
+    # @message = "On hold for #{application.name}"
+    redirect_to "/pets/#{pet.id}"
   end
 
   private

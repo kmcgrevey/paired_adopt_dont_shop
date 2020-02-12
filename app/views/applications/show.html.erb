@@ -7,7 +7,13 @@
 <p>Zip: <%= @application.zip %></p>
 <p>Description: <%= @application.description %></p>
 <p>Phone Number: <%= @application.phone_number %></p>
+
 <p>Pets:
 <% @application.pets.each do |pet| %>
-  <li> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
-<% end %></p>
+<section id="pet-<%= pet.id %>">
+  <li> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+    <%= button_to "Approve Pet", "/pets/#{pet.id}/applications/#{@application.id}" %> <!--   @approve_applications_path-->
+  </li>
+</section>
+<% end %>
+</p>
