@@ -26,10 +26,15 @@ Rails.application.routes.draw do
   delete '/reviews/:id', to: 'reviews#destroy'
 
   # post '/pets/:id', to: 'pets#favorite'
-  post '/pets/:id', to: 'favorites#favorite'
+  post '/pets/:id', to: 'favorites#favorite' #'/pets/:id' /favorites/:id
   get '/favorites', to: 'favorites#index'
   # delete '/pets/:id', to: 'favorites#destroy'
-  patch '/favorites/:pet_id', to: 'favorites#remove'
+  patch '/favorites/:pet_id', to: 'favorites#remove' #this needs to be destroy
   delete '/favorites/:pet_id', to: 'favorites#remove_index'
   delete '/favorites', to: 'favorites#remove_all'
+
+  get '/applications/new', to: 'applications#new'
+  post '/favorites', to: 'applications#create' #applications
+  # get '/applications', to: 'applications#index'
+  get '/applications/:id', to: 'applications#show'
 end
