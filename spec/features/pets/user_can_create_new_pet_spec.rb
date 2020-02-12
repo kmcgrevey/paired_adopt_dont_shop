@@ -34,4 +34,26 @@ RSpec.describe "shelter pet index to new pet form page", type: :feature do
 
     expect(new_pet.name).to eq("Boots")
   end
+
+  it "cannot create pet with missing info" do
+    shelter1 = Shelter.create(name: "Pups 4 U",
+                           address: "208 Puppy Place",
+                           city: "Denver",
+                           state: "CO",
+                           zip: 80211)
+
+    visit "/shelters/#{shelter1.id}/pets/new"
+
+    expect(page).to have_content("New Pet Information")
+    expect(page).to have_content("(required)")
+
+    fill_in :name, with: "Boots"
+
+    click_button 'Add New Pet'
+
+    expect(page).to have_content("Pet not created: Please provide required information.")
+    expect(page).to have_content("Name")
+    expect(page).to have_content("Approximate age")
+    expect(page).to have_content("Image")
+  end
 end
