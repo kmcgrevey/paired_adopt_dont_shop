@@ -58,11 +58,33 @@ RSpec.describe "shelter id page", type: :feature do
                               rating: "3",
                               content: "Totally average in every way",
                               shelter: @shelter1)
+    app = Application.create(name: "Kathleen",
+                             address: "4330 Pecos St",
+                             city: "Denver",
+                             state: "CO",
+                             zip: "80211",
+                             phone_number: "3037186690",
+                             description: "I will be a great owner",
+                             pets: [pet1, pet2])
+
 
     visit "/shelters/#{@shelter1.id}"
 
     expect(page).to have_content("Pet Count: 3")
     expect(page).to have_content("Average Rating: 3.7")
-    expect(page).to have_content("Apps on File:") #NEED STAT
+    expect(page).to have_content("Apps on File: 1")
+
+    app2 = Application.create(name: "Kevin",
+      address: "3025 S Birch St",
+      city: "Denver",
+      state: "CO",
+      zip: "80222",
+      phone_number: "3178821471",
+      description: "I need sum dawgs.",
+      pets: [pet1, pet3])
+
+    visit "/shelters/#{@shelter1.id}"
+
+    expect(page).to have_content("Apps on File: 2")
   end
 end

@@ -5,7 +5,7 @@
 <section style="color:green" id="stats-<%= @shelter.id %>" >
  <p>Pet Count: <%= @shelter.pets.count %>
  Average Rating: <%= @shelter.average_rating.round(1) %>
- Apps on File:</p>
+ Apps on File: <%= @shelter.count_apps_on_file %></p>
 </section>
 
 
