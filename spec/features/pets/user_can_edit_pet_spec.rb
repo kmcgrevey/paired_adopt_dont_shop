@@ -54,21 +54,17 @@ RSpec.describe "update pet form page", type: :feature do
     expect(page).to have_content("Buttercup is friendly and energetic")
   end
 
-  xit "cannot update without missing information" do
-    shelter1 = Shelter.create(name: "Pups 4 U",
-                           address: "208 Puppy Place",
-                           city: "Denver",
-                           state: "CO",
-                           zip: 80211)
+  it "cannot update without missing information" do
 
-    visit "/shelters/#{shelter1.id}/pets/new"
+    visit "/pets/#{@pet1.id}/edit"
 
     expect(page).to have_content("Edit Pet Information")
     expect(page).to have_content("(required)")
 
-    fill_in :name, with: "Boots"
-save_and_open_page
-    click_button 'Add New Pet'
+    fill_in :name, with: ""
+    fill_in :image_src, with: ""
+
+    click_button 'Submit'
 
     expect(page).to have_content("Pet not updated: Please provide required information.")
     expect(page).to have_content("Name")
