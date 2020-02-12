@@ -23,9 +23,13 @@ class PetsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:id])
-    shelter.pets.create(pet_params)
-
-    redirect_to "/shelters/#{shelter.id}/pets"
+    potential_pet = shelter.pets.create(pet_params)
+    if potential_pet.save
+      redirect_to "/shelters/#{shelter.id}/pets"
+    else
+      flash[:alert] = "Pet not created: Please provide required information."
+      redirect_to "/shelters/#{shelter.id}/pets/new"
+    end
   end
 
   def edit
@@ -34,23 +38,26 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update(
-      {
-      name: params[:pet][:name],
-      approximate_age: params[:pet][:approximate_age],
-      image_src: params[:pet][:image_src],
-      status: params[:pet][:status],
-      description: params[:pet][:description]
-      }
-    )
-
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    pet.update(pet_params)
+    if pet.save
+      redirect_to "/pets/#{pet.id}"
+    else
+      flash[:alert] = "Pet not updated: Please provide required information."
+      redirect_to "/pets/#{pet.id}/edit"
+    end
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    redirect_to '/pets'
+    pet = Pet.find(params[:id])
+    # require "pry"; binding.pry
+    if pet.status != "approved"
+      session[:favorites].delete(pet.id.to_s) if session[:favorites] != nil
+      Pet.destroy(params[:id])
+      redirect_to '/pets'
+    else
+      flash[:alert] = "Pet not deleted due to adoption status."
+      redirect_to "/pets/#{pet.id}"
+    end
   end
 
   # def favorite

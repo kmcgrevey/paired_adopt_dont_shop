@@ -1,11 +1,17 @@
-<form action= "/pets/<%=@pet.id%>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <p>Edit</p>
-  <textarea name='pet[name]'><%= @pet.name %></textarea><br/>
-  <textarea name='pet[approximate_age]'><%= @pet.approximate_age %></textarea><br/>
-  <textarea name='pet[image_src]'><%= @pet.image_src %></textarea><br/>
-  <textarea name='pet[status]'><%= @pet.status %></textarea><br/>
-  <textarea name='pet[description]'><%= @pet.description %></textarea><br/>
-  <input type='submit'/>
-</form>
+<h3>Edit Pet Information</h3>
+
+<%= form_tag("/pets/#{@pet.id}", method: :patch) do %>
+<p><%= label_tag :name %>
+  <%= text_field_tag :name, @pet.name %>(required)</p>
+  <p><%= label_tag :approximate_age %>
+    <%= text_field_tag :approximate_age, @pet.approximate_age %>(required)</p>
+    <p><%= label_tag :sex %>
+    <%= text_field_tag :sex, @pet.sex %></p>
+  <p><%= label_tag :image %>
+     <%= text_field_tag :image_src, @pet.image_src %>(required)</p>
+  <p><%= label_tag :description %>
+     <%= text_field_tag :description, @pet.description %></p>
+  <p><%= label_tag :status %>
+  <%= text_field_tag :status, @pet.status %></p>
+<%= submit_tag "Submit"%>
+<% end %>
