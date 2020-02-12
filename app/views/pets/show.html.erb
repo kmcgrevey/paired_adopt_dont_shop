@@ -15,6 +15,7 @@
 </div>
 
 <center>
+  <%= link_to "View All Applications", "/applications", method: :get %>
   <%=link_to "Edit", "/pets/#{@pet.id}/edit", method: :get %>
 
 <form action="/pets/<%=@pet.id%>" method="POST">

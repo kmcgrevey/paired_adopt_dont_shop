@@ -28,11 +28,9 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # def index
-  #   require "pry"; binding.pry
-  #   @applications = Application.find(params[:id])
-  #   redirect_to "/favorites"
-  # end
+  def index
+    @applications = Application.all
+  end
 
   def show
     @application = Application.find(params[:id])

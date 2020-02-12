@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   post '/favorites', to: 'applications#create' #applications
   # get '/applications', to: 'applications#index'
   get '/applications/:id', to: 'applications#show'
+  get '/applications', to: 'applications#index'
 end
