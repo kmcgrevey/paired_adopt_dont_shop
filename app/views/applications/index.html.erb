@@ -1,0 +1,9 @@
+<h1>All Applicants</h1>
+
+<% if @applications == [] %>
+  <p>No Applications for this pet</p>
+<% else %>
+  <% @applications.each do |application| %>
+    <li><%= link_to "#{application.name}", "/applications/#{application.id}"%></li>
+  <% end %>
+<% end %>

@@ -3,6 +3,7 @@
 <section id=pets>
 <% if @favorite_pets == [] %>
   <h3>No favorited pets</h3>
+
 <% else %>
   <%= button_to 'Remove All Favorites', "/favorites", method: :delete %>
   <%= button_to 'Adopt Pets', '/applications/new', method: :get %>
@@ -15,10 +16,11 @@
       <%= button_to 'Remove from Favorites', "/favorites/#{pet.id}" , method: :delete %>
     </div>
     </div>
-  </section>
   <% end %>
 <% end %>
+</section>
 
+<br>
 <section id=apps>
   <br>
     <h1>Applications for Pets:</h1>

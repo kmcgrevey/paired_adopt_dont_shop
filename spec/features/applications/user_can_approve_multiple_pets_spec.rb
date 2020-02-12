@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "From a favorites index page" do
-  it "can see list of pets with applications" do
+RSpec.describe "From a pets show page" do
+  it "can see list of applications for pet with links to applications" do
     shelter1 = Shelter.create(name: "Pups 4 U",
                            address: "208 Puppy Place",
                            city: "Denver",
@@ -31,7 +31,7 @@ RSpec.describe "From a favorites index page" do
                                     zip: "80211",
                                     phone_number: "3037186690",
                                     description: "I will be a great owner",
-                                    pets: [pet1, pet2])
+                                    pets: [pet1])
 
     pet3 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
@@ -41,38 +41,26 @@ RSpec.describe "From a favorites index page" do
                           description: "Frank loves to run",
                           shelter_id: shelter1.id)
 
-    application2 = Application.create(name: "Kathleen",
+    application2 = Application.create(name: "Bob",
                                     address: "4330 Pecos St",
                                     city: "Denver",
                                     state: "CO",
                                     zip: "80211",
                                     phone_number: "3037186690",
                                     description: "I will be a great owner",
-                                    pets: [pet3])
-
-    visit "/applications/#{application.id}"
-
-    expect(page).to have_content("#{application.name}")
-    expect(page).to have_content("#{application.address}")
-    expect(page).to have_content("#{application.city}")
-    expect(page).to have_content("#{application.state}")
-    expect(page).to have_content("#{application.zip}")
-    expect(page).to have_content("#{application.phone_number}")
-    expect(page).to have_content("#{application.description}")
-    expect(page).to have_content("#{pet1.name}")
-    expect(page).to have_content("#{pet2.name}")
+                                    pets: [pet3, pet1])
 
     visit "/applications/#{application2.id}"
 
-    expect(page).to have_content("#{application2.name}")
-    expect(page).to have_content("#{application2.address}")
-    expect(page).to have_content("#{application2.city}")
-    expect(page).to have_content("#{application2.state}")
-    expect(page).to have_content("#{application2.zip}")
-    expect(page).to have_content("#{application2.phone_number}")
-    expect(page).to have_content("#{application2.description}")
-    expect(page).to have_content("#{pet3.name}")
-    click_on("#{pet3.name}")
-    expect(current_path).to eq("/pets/#{pet3.id}")
+    within("#pet-#{pet1.id}") do
+      check()
+      expect(page).to have_button("Approve Pet")
+      click_on "Approve Pet"
+      expect(current_path).to eq("/pets/#{pet1.id}")
+    end
+
+    expect(page).to have_content("Adoption Status: Pending.")
+    expect(page).to have_content("On hold for #{application2.name}")
+    # expect(page).to have_content("Approve Pet")
   end
 end

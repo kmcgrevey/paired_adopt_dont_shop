@@ -28,14 +28,46 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # def index
-  #   require "pry"; binding.pry
-  #   @applications = Application.find(params[:id])
-  #   redirect_to "/favorites"
-  # end
+  def index
+    pet = Pet.find(params[:id])
+    @applications = pet.applications
+    # @applications = Application.all
+
+    # @application_pets = []
+    # @applications.each do |application|
+    #   @application_pets << application.pets
+    # end
+    # require "pry"; binding.pry
+  end
 
   def show
     @application = Application.find(params[:id])
+  end
+
+  def approve
+    application = Application.find(params[:id])
+    pet = Pet.find(params[:pet_id])
+    if pet.status.downcase == "adoptable"
+      # @app_id = application.id  maybe try session hash here
+      pet.status = "Pending. On hold for #{application.name} /#{application.id}"
+      pet.save
+      # @message = "On hold for #{application.name}"
+      redirect_to "/pets/#{pet.id}"
+    else
+      # pet = application.pets.find {|pet| pet.status.downcase == 'pending'}
+      pet.status = "Adoptable"
+      pet.save
+      redirect_to "/applications/#{application.id}"
+    end
+  end
+
+  def approve_all
+    application = Application.find(params[:id])
+    application.pets.each do |pet|
+      pet.status = "Pending. On hold for #{application.name}"
+      pet.save
+    end
+    redirect_to "/applications/#{application.id}" #where should this redirect
   end
 
   private

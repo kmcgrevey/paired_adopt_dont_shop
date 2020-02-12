@@ -27,17 +27,18 @@ RSpec.describe "From a favorites index page" do
     click_on "Adopt Pets"
 
     # find(:css, "#pet[value='#{pet1.id}']").set(true)
-    within('#check') do
+    within("#favorite-#{pet1.id}") do
       # find("label", text: "#{pet1.name}").click
-      # check "#{pet1.id}"
+      check "pet_ids_"
     end
+
     click_on "Submit"
     expect(current_path).to eq("/applications/new")
     expect(page).to have_content("Please fill out all fields.")
 
     # find(:css, "#pet[value='#{pet1.id}']").set(true)
-    within('#check') do
-      check("#{pet1.name}")
+    within("#favorite-#{pet1.id}") do
+      check "pet_ids_"
     end
     fill_in :name, with: "Kathleen"
     fill_in :address, with: "123 Penny Lane"
@@ -50,6 +51,7 @@ RSpec.describe "From a favorites index page" do
 
     expect(page).to have_content("Your application for #{pet1.name} was submitted")
     expect(current_path).to eq("/favorites")
+    # save_and_open_page
     within('#pets') do
       expect(page).to_not have_content("#{pet1.name}")
     end
