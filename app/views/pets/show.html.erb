@@ -9,7 +9,7 @@
 <p>Age: <%=@pet.approximate_age%></p>
 <p>Sex: <%=@pet.sex%></p>
 <p>Description: <%=@pet.description%></p>
-<p>Adoption Status: <%=@pet.status%></p>
+<p>Adoption Status: <%=@pet.status.split(" /").first%></p>
 <p>Shelter: <a href="/shelters/<%=@pet.shelter.id%>"><%=@pet.shelter.name%></a></p>
 </div>
 </div>

@@ -12,12 +12,16 @@ RSpec.describe "From a pets show page" do
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "Biscuit is so cute is hurts.  Friendly, lovable, and fun.",
                           shelter_id: shelter1.id)
 
     pet2 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "Frank loves to run",
                           shelter_id: shelter1.id)
 
     application = Application.create(name: "Kathleen",
@@ -33,6 +37,8 @@ RSpec.describe "From a pets show page" do
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "Frank loves to run",
                           shelter_id: shelter1.id)
 
     application2 = Application.create(name: "Bob",

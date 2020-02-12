@@ -27,13 +27,14 @@ RSpec.describe "From a favorites index page" do
     click_on "Adopt Pets"
 
     # find(:css, "#pet[value='#{pet1.id}']").set(true)
-    # within('#check') do
+    within("#favorite-#{pet1.id}") do
       # find("label", text: "#{pet1.name}").click
-      # check "#{pet1.id}"
-    # end
-    # click_on "Submit"
+      check "pet_ids_"
+    end
+
+    click_on "Submit"
     expect(current_path).to eq("/applications/new")
-    # expect(page).to have_content("Please fill out all fields.")
+    expect(page).to have_content("Please fill out all fields.")
 
     # find(:css, "#pet[value='#{pet1.id}']").set(true)
     within("#favorite-#{pet1.id}") do

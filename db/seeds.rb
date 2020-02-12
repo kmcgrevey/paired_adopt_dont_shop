@@ -26,7 +26,7 @@ pet1 = Pet.create(image_src: "https://free-classifieds-usa.com/oc-content/upload
                       name: "Peanut",
                       approximate_age: "3",
                       sex: "M",
-                      status: "pending",
+                      status: "adoptable",
                       description: "",
                       shelter_id: shelter2.id)
 
@@ -42,7 +42,7 @@ pet3 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/s
                       name: "Frank",
                       approximate_age: "1",
                       sex: "M",
-                      status: "adopted",
+                      status: "adoptable",
                       description: "",
                       shelter_id: shelter1.id)
 
