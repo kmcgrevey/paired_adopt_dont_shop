@@ -13,7 +13,10 @@
 <section id="pet-<%= pet.id %>">
   <li> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
     <%= button_to "Approve Pet", "/pets/#{pet.id}/applications/#{@application.id}" %> <!--   @approve_applications_path-->
+    <%= check_box_tag "pet_ids[]", pet.id %>
+    <%= label_tag pet.name %>
   </li>
+  <%= button_to "Approve All Checked Pets",  "/pets/#{pet.id}/applications/#{@application.id}"%>
 </section>
 <% end %>
 </p>
