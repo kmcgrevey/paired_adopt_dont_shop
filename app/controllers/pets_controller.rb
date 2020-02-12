@@ -38,15 +38,16 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update(
-      {
-      name: params[:pet][:name],
-      approximate_age: params[:pet][:approximate_age],
-      image_src: params[:pet][:image_src],
-      status: params[:pet][:status],
-      description: params[:pet][:description]
-      }
-    )
+    # pet.update(
+    #   {
+    #   name: params[:pet][:name],
+    #   approximate_age: params[:pet][:approximate_age],
+    #   image_src: params[:pet][:image_src],
+    #   status: params[:pet][:status],
+    #   description: params[:pet][:description]
+    #   }
+    # )
+    pet.update(pet_params)
 
     pet.save
     redirect_to "/pets/#{pet.id}"

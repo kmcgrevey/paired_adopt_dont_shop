@@ -48,7 +48,7 @@ RSpec.describe "shelter pet index to new pet form page", type: :feature do
     expect(page).to have_content("(required)")
 
     fill_in :name, with: "Boots"
-save_and_open_page
+
     click_button 'Add New Pet'
 
     expect(page).to have_content("Pet not created: Please provide required information.")
