@@ -35,7 +35,7 @@ class SheltersController < ApplicationController
     end
   end
 
-  def destroy #REFACTOR TO MODEL and PORO?
+  def destroy
     @pet_list = Shelter.find(params[:id]).pets
     if (@pet_list.any? { |pet| (pet.status == "pending") || (pet.status == "approved") }) == false
       destroy_pets

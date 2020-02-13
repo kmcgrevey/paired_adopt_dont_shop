@@ -12,12 +12,16 @@ RSpec.describe "From a favorites index page" do
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     pet2 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     visit "/pets/#{pet1.id}"
@@ -26,13 +30,8 @@ RSpec.describe "From a favorites index page" do
     visit "/favorites"
     click_on "Adopt Pets"
 
-    # expect(current_path).to eq("favorites/applications/new")
     expect(page).to have_content("Select pets to adopt:")
-    # click_on "Biscuit"
-    # click_button
-    # check "value=#{pet1.id}"
-    # check "#{pet1.name}"
-    find(:css, "#pet[value='#{pet1.id}']").set(true)
+    check()
     fill_in :name, with: "Kathleen"
     fill_in :address, with: "123 Penny Lane"
     fill_in :city, with: "Denver"

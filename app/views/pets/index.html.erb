@@ -10,7 +10,7 @@
   <p>Shelter: <a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name%></a></p>
   <p>Age: <%=pet.approximate_age%></p>
   <p>Sex: <%=pet.sex%></p>
-  <p>Status: <%=pet.status%></p>
+  <p>Status: <%=pet.status.split(" /").first%></p>
   <p>Description: <%=pet.description%></p>
   </div>
   <%=link_to '<button type="button">Edit</button>'.html_safe, "/pets/#{pet.id}/edit", method: :get %>

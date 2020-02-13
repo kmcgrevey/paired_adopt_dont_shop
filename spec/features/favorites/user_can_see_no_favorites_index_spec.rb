@@ -12,6 +12,8 @@ RSpec.describe "On favorites index page", type: :feature do
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     visit '/favorites'

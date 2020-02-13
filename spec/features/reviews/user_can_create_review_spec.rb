@@ -29,7 +29,6 @@ RSpec.describe "When I visit a shelter page", type: :feature do
 
     new_review = Review.last
 
-    # expect(new_review.title).to eq("Sweet") #ALTERNATE TEST?
     expect(page).to have_content("Sweet")
     expect(page).to have_content("4")
     expect(page).to have_content("The kitty litter here has a great texture.")

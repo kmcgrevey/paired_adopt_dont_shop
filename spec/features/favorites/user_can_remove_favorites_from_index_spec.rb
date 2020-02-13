@@ -12,12 +12,16 @@ RSpec.describe "On favorites index page", type: :feature do
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     pet2 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     visit "/pets/#{pet1.id}"

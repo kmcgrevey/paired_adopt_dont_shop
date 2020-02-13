@@ -1,12 +1,10 @@
 class PetsController < ApplicationController
   def index
     @pets = Pet.all
-    # @favorites
   end
 
   def pets
     @shelter = Shelter.find(params[:shelter_id])
-    # @favorites
   end
 
   def new
@@ -15,10 +13,6 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
-    # pet = Pet.find(params[:id])
-    # @favorites ||= Array.new
-    # @favorites << @pet
-    # render 'show'
   end
 
   def create
@@ -49,7 +43,6 @@ class PetsController < ApplicationController
 
   def destroy
     pet = Pet.find(params[:id])
-    # require "pry"; binding.pry
     if pet.status != "approved"
       session[:favorites].delete(pet.id.to_s) if session[:favorites] != nil
       Pet.destroy(params[:id])
@@ -59,17 +52,6 @@ class PetsController < ApplicationController
       redirect_to "/pets/#{pet.id}"
     end
   end
-
-  # def favorite
-  #   @pet = Pet.find(params[:id])
-  #   # session[:favorites] = @favorites
-  #   # @favorites ||= Favorite.new
-  #   session[:favorites] ||= Favorite.new.pets
-  #   # @favorites.pets << @pet
-  #   session[:favorites] << @pet
-  #   flash[:notice] = "#{@pet.name} was added to your favorites!"
-  #   render :show
-  # end
 
   private
 

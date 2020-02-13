@@ -53,14 +53,20 @@ RSpec.describe "From a pets show page" do
     visit "/applications/#{application2.id}"
 
     within("#pet-#{pet1.id}") do
-      check()
       expect(page).to have_button("Approve Pet")
       click_on "Approve Pet"
       expect(current_path).to eq("/pets/#{pet1.id}")
     end
 
+    visit "/applications/#{application2.id}"
+
+    within("#pet-#{pet3.id}") do
+      expect(page).to have_button("Approve Pet")
+      click_on "Approve Pet"
+      expect(current_path).to eq("/pets/#{pet3.id}")
+    end
+
     expect(page).to have_content("Adoption Status: Pending.")
     expect(page).to have_content("On hold for #{application2.name}")
-    # expect(page).to have_content("Approve Pet")
   end
 end
