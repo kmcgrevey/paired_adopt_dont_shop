@@ -31,7 +31,7 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
   end
 
-  def approve
+  def update
     application = Application.find(params[:id])
     pet = Pet.find(params[:pet_id])
     if pet.status.downcase == "adoptable"

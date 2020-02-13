@@ -29,7 +29,7 @@ class FavoritesController < ApplicationController
     redirect_back fallback_location: "/pets"
   end
 
-  def remove_index
+  def destroy
     @pet = Pet.find(params[:pet_id])
     @favorite_pets = session[:favorites]
     @favorite_pets.delete(@pet.id.to_s)
@@ -37,7 +37,7 @@ class FavoritesController < ApplicationController
     redirect_to "/favorites"
   end
 
-  def remove_all
+  def destroy_all
     session[:favorites] = []
     @favorite_pets = session[:favorites]
     redirect_to "/favorites"
