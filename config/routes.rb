@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/', to: 'welcome#index'
-  # resources :leads, path: ''
   get '/shelters', to: 'shelters#index'
   get '/shelters/new', to: 'shelters#new'
   post '/shelters', to: 'shelters#create'
@@ -25,19 +24,15 @@ Rails.application.routes.draw do
   patch '/reviews/:id', to: 'reviews#update'
   delete '/reviews/:id', to: 'reviews#destroy'
 
-  # post '/pets/:id', to: 'pets#favorite'
-  post '/pets/:id', to: 'favorites#favorite' #'/pets/:id' /favorites/:id
+  post '/pets/:id', to: 'favorites#favorite'
   get '/favorites', to: 'favorites#index'
-  # delete '/pets/:id', to: 'favorites#destroy'
-  patch '/favorites/:pet_id', to: 'favorites#remove' #this needs to be destroy
+  patch '/favorites/:pet_id', to: 'favorites#remove'
   delete '/favorites/:pet_id', to: 'favorites#remove_index'
   delete '/favorites', to: 'favorites#remove_all'
 
   get '/applications/new', to: 'applications#new'
-  post '/favorites', to: 'applications#create' #applications
-  # get '/applications', to: 'applications#index'
+  post '/favorites', to: 'applications#create'
   get '/applications/:id', to: 'applications#show'
-  # get '/applications', to: 'applications#index'
   get '/pets/:id/applications', to: 'applications#index'
   post '/pets/:pet_id/applications/:id', to: 'applications#approve'
   post '/applications/:id', to: 'applications#approve_all'

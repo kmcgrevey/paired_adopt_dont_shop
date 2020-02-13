@@ -26,7 +26,6 @@
     <h1>Applications for Pets:</h1>
 <% @pets.each do |pet| %>
   <% if pet.applications != [] %>
-  <!--  if pet.has_application(pet)  -->
     <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
   <% end %>
 <% end %>

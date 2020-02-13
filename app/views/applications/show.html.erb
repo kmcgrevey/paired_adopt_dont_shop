@@ -14,7 +14,7 @@
   <ul> <div>
     <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
     <% if pet.status.downcase == "adoptable"%>
-      <%= button_to "Approve Pet", "/pets/#{pet.id}/applications/#{@application.id}" %> <!--   @approve_applications_path-->
+      <%= button_to "Approve Pet", "/pets/#{pet.id}/applications/#{@application.id}" %> 
     <% elsif pet.status.downcase.split(" /").first == "pending. on hold for #{@application.name.downcase}" && pet.status.downcase.split(" /").last.to_i == @application.id%>
       <%= button_to "Revoke", "/pets/#{pet.id}/applications/#{@application.id}" %>
     <% else %>

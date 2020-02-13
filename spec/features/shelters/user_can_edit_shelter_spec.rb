@@ -8,12 +8,6 @@ RSpec.describe "update shelter form page", type: :feature do
                            state: "CO",
                            zip: 80211)
 
-    # shelter2 = Shelter.create(name: "Furry Friends Shelter",
-    #                         address: "7899 St Charles Ave",
-    #                         city: "New Orleans",
-    #                         state: "LA",
-    #                         zip: 70118)
-
     visit "/shelters/#{shelter1.id}"
 
     expect(page).to have_content("Poops 4 U")

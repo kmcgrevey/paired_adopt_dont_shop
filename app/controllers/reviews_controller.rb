@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
       redirect_to "/shelters/#{shelter.id}"
     else
       flash[:alert] = "Review not created: Required information missing."
-      # render :new
       redirect_to "/shelters/#{shelter.id}/reviews/new"
     end
   end
