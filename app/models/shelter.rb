@@ -11,8 +11,4 @@ class Shelter < ApplicationRecord
       0
     end
   end
-
-  def count_apps_on_file
-    Application.all.length
-  end
 end
