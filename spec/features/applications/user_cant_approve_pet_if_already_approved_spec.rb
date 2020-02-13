@@ -53,7 +53,6 @@ RSpec.describe "From a application show page" do
     visit "/applications/#{application2.id}"
 
     within("#pet-#{pet1.id}") do
-      # check()
       expect(page).to have_button("Approve Pet")
       click_on "Approve Pet"
       expect(current_path).to eq("/pets/#{pet1.id}")
@@ -76,7 +75,6 @@ RSpec.describe "From a application show page" do
     visit "/applications/#{application2.id}"
 
     within("#pet-#{pet3.id}") do
-      # check()
       expect(page).to have_button("Approve Pet")
       click_on "Approve Pet"
       expect(current_path).to eq("/pets/#{pet3.id}")
@@ -85,10 +83,6 @@ RSpec.describe "From a application show page" do
     visit "/applications/#{application.id}"
 
     within("#pet-#{pet1.id}") do
-      # check()
-      # save_and_open_page
-      # expect(page).to have_button("Approve Pet")
-      # click_on "Approve Pet"
       expect(page).to have_content("No more applications can be approved for this pet at this time.")
     end
   end

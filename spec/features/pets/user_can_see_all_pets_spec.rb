@@ -18,18 +18,24 @@ RSpec.describe "pet index page", type: :feature do
                           name: "Peanut",
                           approximate_age: "3",
                           sex: "M",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter2.id)
 
     pet2 = Pet.create(image_src: "https://thedogsjournal.com/wp-content/uploads/bfi_thumb/bernedoodle-prize-39zr02ajf5v660ii64zbbe.jpg",
                           name: "Biscuit",
                           approximate_age: "8",
                           sex: "F",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
     pet3 = Pet.create(image_src: "https://cdn.fotofits.com/petzlover/gallery/img/l/samoyed-657170.jpg",
                           name: "Frank",
                           approximate_age: "1",
                           sex: "M",
+                          status: "adoptable",
+                          description: "soft",
                           shelter_id: shelter1.id)
 
 
