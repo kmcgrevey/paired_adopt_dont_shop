@@ -25,7 +25,6 @@ RSpec.describe "When I visit a shelter show page", type: :feature do
     expect(page).to have_content(review1.title)
     expect(page).to have_content(review1.rating)
     expect(page).to have_content(review1.content)
-    #NEED METHOD TO TEST FOR NO IMAGE 
 
     expect(page).to have_content('Meh')
     expect(page).to have_content('3')

@@ -60,6 +60,5 @@ RSpec.describe "From a pets show page" do
 
     expect(page).to have_content("Adoption Status: Pending.")
     expect(page).to have_content("On hold for #{application2.name}")
-    # expect(page).to have_content("Approve Pet")
   end
 end
