@@ -7,6 +7,8 @@ class FavoritesController < ApplicationController
 
   def show
     @favorite_pets = session[:favorites]
+    @pet = Pet.find(params[:id])
+    redirect_to "/pets/#{@pet.id}"
   end
 
   def favorite
@@ -23,10 +25,9 @@ class FavoritesController < ApplicationController
     redirect_to "/pets/#{@pet.id}"
   end
 
-  def show
-    @pet = Pet.find(params[:id])
-    redirect_to "/pets/#{@pet.id}"
-  end
+  # def show
+  #
+  # end
 
   def remove
     @pet = Pet.find(params[:pet_id])
