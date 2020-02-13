@@ -61,15 +61,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def approve_all
-    application = Application.find(params[:id])
-    application.pets.each do |pet|
-      pet.status = "Pending. On hold for #{application.name}"
-      pet.save
-    end
-    redirect_to "/applications/#{application.id}" #where should this redirect
-  end
-
   private
 
   def application_params
